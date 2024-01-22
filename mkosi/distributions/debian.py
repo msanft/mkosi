@@ -176,7 +176,7 @@ class Installer(DistributionInstaller):
             policyrcd.write_text("#!/bin/sh\nexit 101\n")
 
         invoke_apt(context, "apt-get", "update", apivfs=False)
-        invoke_apt(context, "apt-get", "install", packages, apivfs=apivfs)
+        invoke_apt(context, "apt-get", "install", packages, apivfs=apivfs, mounts=("--bind", "/bin/sh", "/bin/sh"))
         install_apt_sources(context, cls.repositories(context, local=False))
 
         policyrcd.unlink()
