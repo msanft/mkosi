@@ -132,7 +132,8 @@ class Installer(DistributionInstaller):
                     "?essential", "?exact-name(usr-is-merged)",
                 ],
                 apivfs=False,
-                mounts=("--bind", f.name, f.name),
+                mounts=("--bind", f.name, f.name,
+                        "--bind", "/bin/sh", "/bin/sh"),
             )
 
             essential = f.read().strip().splitlines()
